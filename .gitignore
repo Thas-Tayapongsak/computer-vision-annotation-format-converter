@@ -1,3 +1,6 @@
 /datasets/*
 /output/*
 __pycache__/
+
+!/datasets/info
+!/output/info
