@@ -1,3 +1,3 @@
-/datasets/
-/output/
+/datasets/*
+/output/*
 __pycache__/
