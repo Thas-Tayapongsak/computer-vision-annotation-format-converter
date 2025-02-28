@@ -5,9 +5,9 @@ from converter_utils import (
     copy_images, 
     write_yolo_yaml, 
     initialize_yolo_labels,
-    process_coco_json,
+    process_coco,
     validate_options,
-    process_binary_masks,
+    process_bin,
 )
 
 # TODO: ***VERY IMPORTANT***
@@ -35,7 +35,7 @@ def from_bin(opt, verbose=True):
     # check if images are split into train, validation, and test sets, and create directory structure
     splits = []
     for split in images_path.iterdir(): 
-        key, images, categories, annotations = process_binary_masks(dst_path, images_path, masks_path, split, verbose)
+        key, images, categories, annotations = process_bin(dst_path, images_path, masks_path, split, verbose)
         splits.append({key: {'images': images, 'categories': categories, 'annotations': annotations}})
         if not split.is_dir():
             break
@@ -59,7 +59,7 @@ def from_coco(opt, verbose=True):
 
     splits = []
     for json_path in json_paths:
-        key, images, categories, annotations = process_coco_json(dst_path, src_dataset, json_path, verbose)
+        key, images, categories, annotations = process_coco(dst_path, src_dataset, json_path, verbose)
         splits.append({key: {'images': images, 'categories': categories, 'annotations': annotations}})
 
     coco_dict = {

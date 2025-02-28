@@ -140,7 +140,7 @@ def initialize_yolo_labels(dst_path, images, verbose=True):
     if verbose:
         print()
 
-def process_coco_json(dst_path, src_dataset, json_path, verbose=True):
+def process_coco(dst_path, src_dataset, json_path, verbose=True):
     """
     Load COCO JSON data and create directory structure
 
@@ -198,7 +198,7 @@ def find_contours(sub_mask):
     _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     return cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[0]
 
-def process_binary_masks(dst_path, images_path, masks_path, split, verbose=True):
+def process_bin(dst_path, images_path, masks_path, split, verbose=True):
     if split.is_dir():
         split_name = split.name
         key = split_name
@@ -275,5 +275,5 @@ def process_binary_masks(dst_path, images_path, masks_path, split, verbose=True)
 
     return key, images, categories, annotations
 
-def process_yolo_txt():
+def process_yolo():
     pass
